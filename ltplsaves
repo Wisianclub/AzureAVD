@@ -1,0 +1,15 @@
+net use R: \\elitazfileshare12.file.core.windows.net\fslogixshare CQgB+KvK7Wjc7wiwjGsoDPxshNWh/r+bMZ592Ii+2t2iWXo7AN4OL5aukkqAy4l+CzVgnwmV7TVr+AStEEXNEw== /user:Azure\elitazfileshare12
+
+2]
+icacls R: /grant "ACCORDPROS\AccordAVDUsers:(M)"
+icacls R: /grant "Creator Owner:(OI)(CI)(IO)(M)"
+icacls R: /remove "Authenticated Users"
+icacls R: /remove "Builtin\Users"
+
+
+
+Profile containner permissions - 
+
+$regPath = "HKLM:\SOFTWARE\FSLogix\profiles"
+New-ItemProperty -Path $regPath -Name Enabled -PropertyType DWORD -Value 1 -Force
+New-ItemProperty -Path $regPath -Name VHDLocations -PropertyType MultiString -Value \\elitazfileshare12.file.core.windows.net\fslogixshare -Force
